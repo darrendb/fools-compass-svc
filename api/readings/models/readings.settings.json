@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "readings",
+  "info": {
+    "name": "Reading",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "author": {
+      "via": "readings",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "spread": {
+      "model": "spreads"
+    },
+    "comment": {
+      "type": "richtext"
+    }
+  }
+}
