@@ -26,3 +26,8 @@ http://localhost:1937/dashboard
 - Home page has "Warning: Prop `className` did not match..."
 - readings/slug page has "Warning: Extra attributes from the server: style..."
 
+## Heroku
+### logs
+heroku logs -n 200 -a fools-compass-svc
+heroku logs --tail -a fools-compass-svc
+heroku addons:open papertrail -a fools-compass-svc

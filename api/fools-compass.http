@@ -1,0 +1,40 @@
+
+### 'Auth (as 'the Fool')' [Run w/ 'dev' env]
+POST {{base_url}}/auth/local
+Content-Type: application/json
+
+{
+  "identifier": "the Fool",
+  "password": "{{word_thefool}}"
+}
+
+> {%
+client.test("Request executed successfully", function() {
+    client.assert(response.status === 200, "Response status is not 200");
+});
+client.global.set("token_thefool", response.body.jwt);
+%}
+
+
+### 'Update Reading (by ID)' [Run w/ 'dev' env]
+PUT {{base_url}}/readings/{{reading_update_id}}
+Content-Type: application/json
+Authorization: Bearer {{token_thefool}}
+
+{
+  "title": "Monday Daily v9"
+}
+
+
+### 'Get All Readings' [Run w/ 'dev' env]
+GET {{base_url}}/readings/
+Content-Type: application/json
+Authorization: Bearer {{token_thefool}}
+
+
+### 'Get a Reading (by Slug)' [Run w/ 'dev' env]
+GET {{base_url}}/readings/{{reading_get_slug}}
+Content-Type: application/json
+Authorization: Bearer {{token_thefool}}
+
+###
